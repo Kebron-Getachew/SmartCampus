@@ -88,14 +88,13 @@ public class LoginForm extends JFrame {
             return;
         }
 
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE username = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next() && org.mindrot.jbcrypt.BCrypt.checkpw(password, rs.getString("password"))) {
                 new DashboardForm().setVisible(true);
                 dispose();
             } else {

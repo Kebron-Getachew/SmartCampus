@@ -50,11 +50,13 @@ public class RegisterForm extends JFrame {
             return;
         }
 
+        String hashedPassword = org.mindrot.jbcrypt.BCrypt.hashpw(password, org.mindrot.jbcrypt.BCrypt.gensalt());
+
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(2, hashedPassword);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Registration successful! Please login.");
             new LoginForm().setVisible(true);
