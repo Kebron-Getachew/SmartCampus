@@ -215,6 +215,8 @@ public class DashboardForm extends JFrame {
             listPanel.add(new JLabel("Error loading reports: " + e.getMessage()));
         }
 
+        listPanel.add(Box.createVerticalGlue());
+
         panel.add(header, BorderLayout.NORTH);
         panel.add(listPanel, BorderLayout.CENTER);
 
@@ -224,6 +226,8 @@ public class DashboardForm extends JFrame {
     private JPanel buildReportRow(String name, String location, String type, String status, java.sql.Date date) {
         JPanel row = new JPanel(new BorderLayout());
         row.setOpaque(false);
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 46));
+        row.setPreferredSize(new Dimension(10, 46));
         row.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(240, 240, 240)),
                 BorderFactory.createEmptyBorder(0, 0, 10, 0)));
@@ -234,6 +238,8 @@ public class DashboardForm extends JFrame {
 
         RoundedPanel iconBox = new RoundedPanel(new Color(243, 244, 246), 10);
         iconBox.setPreferredSize(new Dimension(36, 36));
+        iconBox.setMaximumSize(new Dimension(36, 36));
+        iconBox.setMinimumSize(new Dimension(36, 36));
         iconBox.setLayout(new GridBagLayout());
         JLabel iconLetter = new JLabel(name.isEmpty() ? "?" : name.substring(0, 1).toUpperCase());
         iconLetter.setFont(new Font("SansSerif", Font.BOLD, 14));
