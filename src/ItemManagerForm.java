@@ -11,6 +11,12 @@ public class ItemManagerForm extends JFrame {
     private JTextField searchField;
     private int selectedId = -1;
 
+    public ItemManagerForm(String prefillSearch) {
+    this();
+    searchField.setText(prefillSearch);
+    loadItems();
+}
+
     public ItemManagerForm() {
         setTitle("Manage Lost & Found Items");
         setSize(950, 550);
