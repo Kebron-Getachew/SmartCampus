@@ -16,6 +16,7 @@ public class ItemManagerForm extends JFrame {
 
     public ItemManagerForm() {
         setTitle("Manage Lost & Found Items");
+        setIconImage(new ImageIcon("assets/logo.png").getImage());
         setSize(1000, 750);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -217,7 +218,7 @@ public class ItemManagerForm extends JFrame {
         }
     }
 
-    // ---------- TABLE PANEL (bottom) ----------
+    
 
     private RoundedPanel buildTablePanel() {
         RoundedPanel panel = new RoundedPanel(Color.WHITE, 18);

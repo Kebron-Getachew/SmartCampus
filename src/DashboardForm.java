@@ -6,6 +6,7 @@ public class DashboardForm extends JFrame {
 
     public DashboardForm() {
         setTitle("Smart Campus Lost & Found - Dashboard");
+        setIconImage(new ImageIcon("assets/logo.png").getImage());
         setSize(1100, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,8 +52,13 @@ public class DashboardForm extends JFrame {
         subtitle.setForeground(new Color(120, 120, 120));
         subtitle.setFont(new Font("SansSerif", Font.PLAIN, 12));
 
+        JLabel welcomeLabel = new JLabel("Welcome, " + Session.currentUsername);
+        welcomeLabel.setForeground(new Color(37, 99, 235));
+        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 11));
+
         titleBox.add(title);
         titleBox.add(subtitle);
+        titleBox.add(welcomeLabel);
 
         leftBox.add(logoLabel);
         leftBox.add(titleBox);

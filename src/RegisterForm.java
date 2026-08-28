@@ -7,27 +7,79 @@ public class RegisterForm extends JFrame {
     private JPasswordField passwordField, confirmField;
 
     public RegisterForm() {
-        setTitle("Register - Smart Campus Lost & Found");
-        setSize(350, 220);
+        setTitle("Smart Campus Lost & Found - Register");
+        setIconImage(new ImageIcon("assets/logo.png").getImage());
+        setSize(400, 540);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(4, 2, 10, 10));
+        getContentPane().setBackground(new Color(245, 246, 248));
+        setLayout(new GridBagLayout());
+
+        RoundedPanel card = new RoundedPanel(Color.WHITE, 25);
+        card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+        card.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
+
+        ImageIcon logoIcon = new ImageIcon("assets/logo.png");
+        Image scaled = logoIcon.getImage().getScaledInstance(90, 60, Image.SCALE_SMOOTH);
+        JLabel logoLabel = new JLabel(new ImageIcon(scaled));
+        logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel titleLabel = new JLabel("Create an Account");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(15, 0, 5, 0));
+
+        JLabel subLabel = new JLabel("Join Smart Campus Lost & Found");
+        subLabel.setForeground(new Color(120, 120, 120));
+        subLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        subLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        subLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
 
         usernameField = new JTextField();
+        usernameField.putClientProperty("JTextField.placeholderText", "Username");
+        usernameField.putClientProperty("JTextField.arc", 15);
+        usernameField.setMaximumSize(new Dimension(300, 40));
+        usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         passwordField = new JPasswordField();
+        passwordField.putClientProperty("JTextField.placeholderText", "Password");
+        passwordField.putClientProperty("JTextField.arc", 15);
+        passwordField.setMaximumSize(new Dimension(300, 40));
+        passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         confirmField = new JPasswordField();
+        confirmField.putClientProperty("JTextField.placeholderText", "Confirm Password");
+        confirmField.putClientProperty("JTextField.arc", 15);
+        confirmField.setMaximumSize(new Dimension(300, 40));
+        confirmField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(new JLabel("Username:"));
-        add(usernameField);
-        add(new JLabel("Password:"));
-        add(passwordField);
-        add(new JLabel("Confirm Password:"));
-        add(confirmField);
+        JButton registerBtn = new JButton("Create Account");
+        registerBtn.putClientProperty("JButton.buttonType", "roundRect");
+        registerBtn.setBackground(new Color(37, 99, 235));
+        registerBtn.setForeground(Color.WHITE);
+        registerBtn.setFocusPainted(false);
+        registerBtn.setMaximumSize(new Dimension(300, 40));
+        registerBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton registerBtn = new JButton("Register");
         JButton backBtn = new JButton("Back to Login");
-        add(registerBtn);
-        add(backBtn);
+        backBtn.putClientProperty("JButton.buttonType", "borderless");
+        backBtn.setForeground(new Color(37, 99, 235));
+        backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        card.add(logoLabel);
+        card.add(titleLabel);
+        card.add(subLabel);
+        card.add(usernameField);
+        card.add(Box.createVerticalStrut(12));
+        card.add(passwordField);
+        card.add(Box.createVerticalStrut(12));
+        card.add(confirmField);
+        card.add(Box.createVerticalStrut(20));
+        card.add(registerBtn);
+        card.add(Box.createVerticalStrut(8));
+        card.add(backBtn);
+
+        add(card);
 
         registerBtn.addActionListener(e -> register());
         backBtn.addActionListener(e -> {

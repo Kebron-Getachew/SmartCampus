@@ -8,6 +8,7 @@ public class LoginForm extends JFrame {
 
     public LoginForm() {
         setTitle("Smart Campus Lost & Found - Login");
+        setIconImage(new ImageIcon("assets/logo.png").getImage());
         setSize(400, 480);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,6 +96,7 @@ public class LoginForm extends JFrame {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next() && org.mindrot.jbcrypt.BCrypt.checkpw(password, rs.getString("password"))) {
+                Session.currentUsername = username;
                 new DashboardForm().setVisible(true);
                 dispose();
             } else {
